@@ -34,4 +34,11 @@ class UserAgentTest extends TestCase
         $userAgent = json_decode($response->getBody())->{"user-agent"};
         $this->assertRegexp('/Guzzle/', $userAgent);
     }
+
+    public function testPut()
+    {
+        $response = $this->http->request('PUT', 'user-agent', ['http_errors' => false]);
+
+        $this->assertEquals($response->getStatusCode(), 405);
+    }
 }
